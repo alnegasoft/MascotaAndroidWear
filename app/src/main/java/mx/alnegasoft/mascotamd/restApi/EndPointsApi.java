@@ -5,6 +5,7 @@ import mx.alnegasoft.mascotamd.restApi.model.MediaResponse;
 import mx.alnegasoft.mascotamd.restApi.model.UserResponse;
 import mx.alnegasoft.mascotamd.restApi.model.UsuarioResponse;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -27,6 +28,13 @@ public interface EndPointsApi {
 
     @GET(ConstantesRestApi.URL_GET_USERS_TIMELINE)
     Call<UserResponse> getUsersTimeline();
+
+
+    @FormUrlEncoded
+    @POST(ConstantesRestApi.URL_POST_FOLLOW_UNFOLLOW)
+    Call<UsuarioResponse> followUnfollow(@Path("userid") String userid,
+                                         @Field("action") String action
+                                         );
 
     //users/3648605337/media/recent/?access_token=3648605337.bef215d.5a54ae5f797a4ec2b2b2fef2df1f5832
 
@@ -56,7 +64,9 @@ public interface EndPointsApi {
     Call<UsuarioResponse> darLike(@Path("id") String id,
                                   @Path("id_instagram") String id_instagram,
                                   @Path("nombre_usuario") String nombre_usuario,
-                                  @Path("url_foto_perfil") String url_foto_perfil
+                                  @Path("url_foto_perfil") String url_foto_perfil,
+                                  @Path("id_usuario_like") String id_usuario_like,
+                                  @Path("nombre_usuario_like") String nombre_usuario_like
     );
 
 

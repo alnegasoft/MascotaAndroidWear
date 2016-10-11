@@ -1,6 +1,7 @@
 package mx.alnegasoft.mascotamd.adaptader;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import mx.alnegasoft.mascotamd.MainActivity;
 import mx.alnegasoft.mascotamd.pojo.Mascota;
 import mx.alnegasoft.mascotamd.R;
 import mx.alnegasoft.mascotamd.restApi.EndPointsApi;
@@ -32,6 +34,8 @@ public class PerfilMascotaAdaptador extends RecyclerView.Adapter<PerfilMascotaAd
 
     ArrayList<Mascota> mascotas;
     Activity activity;
+    TextView tvIdUsuarioActivo, tvUsuarioActivo;
+    String idUsuarioActivo="0", usuarioActivo="0";
 
 
     public PerfilMascotaAdaptador(ArrayList<Mascota> mascotas , Activity activity){
@@ -67,8 +71,15 @@ public class PerfilMascotaAdaptador extends RecyclerView.Adapter<PerfilMascotaAd
             @Override
             public void onClick(View view) {
 
-                String token = FirebaseInstanceId.getInstance().getToken();
-                enviarTokenRegistro(token,mascota.getId(),mascota.getIdFoto(),String.valueOf(mascota.getLikes()+1), mascota.getNombre(), mascota.getUrlFotoPerfil());
+                tvUsuarioActivo = (TextView) activity.findViewById(R.id.tvUsuarioActivo);
+                usuarioActivo = tvUsuarioActivo.getText().toString();
+
+                tvIdUsuarioActivo = (TextView) activity.findViewById(R.id.tvIdUsuarioActivo);
+                idUsuarioActivo = tvIdUsuarioActivo.getText().toString();
+
+                if (!usuarioActivo.equals("-")) {
+                    String token = FirebaseInstanceId.getInstance().getToken();
+                    enviarTokenRegistro(token, mascota.getId(), mascota.getIdFoto(), String.valueOf(mascota.getLikes() + 1), mascota.getNombre(), mascota.getUrlFotoPerfil());
 
 //                Toast.makeText(activity, "Token: " + token, Toast.LENGTH_SHORT).show();
 //                Toast.makeText(activity, "Id: " + mascota.getId(), Toast.LENGTH_SHORT).show();
@@ -77,9 +88,10 @@ public class PerfilMascotaAdaptador extends RecyclerView.Adapter<PerfilMascotaAd
 //                Toast.makeText(activity, "Nombre: " + mascota.getNombre(), Toast.LENGTH_SHORT).show();
 
 
-                //Toast.makeText(activity, "Mascota: " + mascota.getIdFoto(), Toast.LENGTH_SHORT).show();
-
-
+                    //Toast.makeText(activity, "Mascota: " + mascota.getIdFoto(), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(activity, "Configura un usuario para dar Like", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -126,7 +138,7 @@ public class PerfilMascotaAdaptador extends RecyclerView.Adapter<PerfilMascotaAd
                 Log.d("USUARIO_FIREBASE", usuarioResponse.getId_dispositivo());
                 Log.d("USUARIO_INSTAGRAM", usuarioResponse.getId_instagram());
 
-                Call<UsuarioResponse> usuarioResponseCall1 = endpoints.darLike(usuarioResponse.getId(), usuarioResponse.getId_instagram(), nombreUsuario, urlFotoPerfil);
+                Call<UsuarioResponse> usuarioResponseCall1 = endpoints.darLike(usuarioResponse.getId(), usuarioResponse.getId_instagram(), nombreUsuario, urlFotoPerfil,idUsuarioActivo,usuarioActivo);
 
                 usuarioResponseCall1.enqueue(new Callback<UsuarioResponse>() {
                     @Override

@@ -164,12 +164,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Fragment> agregarFragments(){
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new MascotasTimelineFragment());
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+
         if (extras != null) {
-        //if (getIntent().getExtras() != null) {
 
             if (extras.get("userId")== null){
                 userId="0";}
@@ -183,6 +182,13 @@ public class MainActivity extends AppCompatActivity {
 
             if (!userId.equals("0")) {
 
+                MascotasTimelineFragment mascotasTimelineFragment = new MascotasTimelineFragment();
+                Bundle argumentsTL = new Bundle(2);
+                argumentsTL.putString("userId", userId);
+                argumentsTL.putString("nombreCuenta", nombreCuenta);
+                mascotasTimelineFragment.setArguments(argumentsTL);
+                fragments.add(mascotasTimelineFragment);
+
                 PerfilFragment perfilFragment =  new PerfilFragment();
                 Bundle arguments = new Bundle(3);
 
@@ -193,8 +199,12 @@ public class MainActivity extends AppCompatActivity {
                 perfilFragment.setArguments(arguments);
 
                 fragments.add(perfilFragment);
+            }else{
+                fragments.add(new MascotasTimelineFragment());
             }
 
+        }else {
+            fragments.add(new MascotasTimelineFragment());
         }
 
 

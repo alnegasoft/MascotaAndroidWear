@@ -10,6 +10,7 @@ import mx.alnegasoft.mascotamd.restApi.deserializador.UserDeserializador;
 import mx.alnegasoft.mascotamd.restApi.deserializador.UsersTimelineDeserializador;
 import mx.alnegasoft.mascotamd.restApi.model.MediaResponse;
 import mx.alnegasoft.mascotamd.restApi.model.UserResponse;
+import mx.alnegasoft.mascotamd.restApi.model.UsuarioResponse;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,6 +26,14 @@ public class RestApiAdapter {
                 .build();
 
         return retrofit.create(EndPointsApi.class);
+    }
+
+    public  Gson construyeGsonDeserializadorPostFollowUnfollow(){
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(UsuarioResponse.class, new UserDeserializador());
+
+        return gsonBuilder.create();
     }
 
     public Gson construyeGsonDeserializadorUserId(){

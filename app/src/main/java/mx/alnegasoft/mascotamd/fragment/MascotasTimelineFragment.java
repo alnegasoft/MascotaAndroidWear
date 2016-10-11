@@ -39,6 +39,10 @@ public class MascotasTimelineFragment extends Fragment {
     ArrayList<Mascota> mascotas;
     View v;
 
+    String userId = "0";
+    String nombreCuenta="0";
+    TextView tvIdUsuarioActivo, tvUsuarioActivo;
+
     public MascotasTimelineFragment() {
         // Required empty public constructor
     }
@@ -62,6 +66,15 @@ public class MascotasTimelineFragment extends Fragment {
         glm.setOrientation(GridLayoutManager.VERTICAL);
         listaMascotas.setLayoutManager(glm);
 
+        if (getArguments() != null) {
+            userId = getArguments().get("userId").toString();
+            nombreCuenta = getArguments().get("nombreCuenta").toString();
+
+            tvUsuarioActivo = (TextView) v.findViewById(R.id.tvUsuarioActivo);
+            tvUsuarioActivo.setText(nombreCuenta);
+            tvIdUsuarioActivo = (TextView) v.findViewById(R.id.tvIdUsuarioActivo);
+            tvIdUsuarioActivo.setText(userId);
+        }
 
         obtenerMediaTimeline();
 
@@ -92,13 +105,15 @@ public class MascotasTimelineFragment extends Fragment {
 
                 for (int i = 0; i <usuarios.size() ; i++) {
 
-                    Toast.makeText(getContext(), usuarios.get(i).getId(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), usuarios.get(i).getId(), Toast.LENGTH_SHORT).show();
                     RestApiAdapter restApiAdapter = new RestApiAdapter();
                     Gson gsonMediaUserId = restApiAdapter.construyeGsonDeserializadorMediaUserId();
                     EndPointsApi endPointsApi = restApiAdapter.establecerConexionRestApiInstagram(gsonMediaUserId);
 
-                    Call<MediaResponse> mediaResponseCall = endPointsApi.getRecentMediaUser(usuarios.get(0).getId().toString());
+                    //Call<MediaResponse> mediaResponseCall = endPointsApi.getRecentMediaUser(usuarios.get(0).getId().toString());
+                    Call<MediaResponse> mediaResponseCall = endPointsApi.getRecentMediaUser("3648605337");
 
+                    //
                     mediaResponseCall.enqueue(new Callback<MediaResponse>() {
                         @Override
                         public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {

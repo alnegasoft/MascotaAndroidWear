@@ -17,8 +17,18 @@
     <string name="menu_configurar">Configurar Cuenta</string>
     <string name="user_id">alnegasoft</string>
     <string name="menu_recibir_notificaciones">Recibir Notificaciones</string>
-    <string name="titulo_timeline"> Timeline Instagram </string>
-
+    <string name="titulo_timeline"> Timeline Instagram - ALNEGASOFT </string>
+    <string name="texto_accion_home"> Ver mi Perfil </string>
+    <string name="texto_accion_follow"> Follow </string>
+    <string name="texto_usuario_activo">Usuario Activo: </string>
+    <string name="usuario_activo">-</string>
+    <string name="id_usuario_activo">0</string>
+    <string name="texto_accion_unfollow"> UnFollow </string>
+    <string name="titulo_fotos_recientes">Fotos Recientes</string>
+    <string name="texto_usuario_like">Usuario:</string>
+    <string name="usuario_like">-</string>
+    <string name="id_usuario_like">0</string>
+    <string name="texto_accion_recientes">Ver sus Fotos Recientes</string>
 
 
 </resources>

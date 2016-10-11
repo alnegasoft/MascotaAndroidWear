@@ -42,6 +42,29 @@
             </intent-filter>
         </service>
 
+        <receiver android:name=".LikeMascota">
+            <intent-filter>
+                <action android:name="LIKE_MASCOTA" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".FollowUser">
+            <intent-filter>
+                <action android:name="FOLLOW" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".UnFollowUser">
+            <intent-filter>
+                <action android:name="UNFOLLOW" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".FotosRecientes">
+            <intent-filter>
+                <action android:name="RECIENTES" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".UsuarioLikeActivity"></activity>
     </application>
 
 </manifest>

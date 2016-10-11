@@ -7,39 +7,39 @@
     tools:context=".fragment.MascotasTimelineFragment">
 
     <TextView
-        android:id="@+id/tvTimeline"
+        android:id="@+id/tvFotosRecientes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/titulo_timeline"
+        android:text="@string/titulo_fotos_recientes"
         android:textSize="20sp"
         android:gravity="center_horizontal"
 
         />
 
     <TextView
-        android:id="@+id/tvTextoUsuarioActivo"
+        android:id="@+id/tvTextoUsuarioLike"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/texto_usuario_activo"
+        android:text="@string/texto_usuario_like"
         android:textSize="20sp"
         android:gravity="center_horizontal"
 
         />
 
     <TextView
-        android:id="@+id/tvUsuarioActivo"
+        android:id="@+id/tvUsuarioLike"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/usuario_activo"
+        android:text="@string/usuario_like"
         android:textSize="20sp"
         android:gravity="center_horizontal"
 
         />
     <TextView
-        android:id="@+id/tvIdUsuarioActivo"
+        android:id="@+id/tvIdUsuarioLike"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/id_usuario_activo"
+        android:text="@string/id_usuario_like"
         android:textSize="20sp"
         android:visibility="invisible"
         android:gravity="center_horizontal"
@@ -53,7 +53,7 @@
 
         >
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvTimelineMascotas"
+            android:id="@+id/rvFotosRecientes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
